@@ -30,7 +30,7 @@ jobs:
       - name: install qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.5'
+          version: '6.5.1'
           host: 'windows'
           target: 'desktop'
           arch: 'win64_msvc2019_64'
@@ -59,7 +59,7 @@ jobs:
       - name: install qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.5'
+          version: '6.5.1'
           target: 'desktop'
       - name: build demo
         run: |
@@ -72,7 +72,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest]
-        qt_ver: [5.9.8,6.5]
+        qt_ver: [5.9.8,6.5.1]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -89,7 +89,7 @@ jobs:
       - name: install qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.5'
+          version: '6.5.1'
           target: 'desktop'
       - name: build demo
         run: |
