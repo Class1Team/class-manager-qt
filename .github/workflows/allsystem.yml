@@ -1,0 +1,99 @@
+name: allsystem
+on: 
+  # push代码时触发workflow
+  push:
+    # 忽略README.md
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+  # pull_request时触发workflow
+  pull_request:
+    # 忽略README.md
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+jobs:
+  build-on-window-22:
+    runs-on: windows-2022
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: install boost
+        id: install-boost
+        uses: MarkusJx/install-boost@v2.4.1
+        with:
+          boost_version: '1.80.0'
+          platform_version: 2022
+          toolset: 'msvc'
+      - name: install qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2019_64'
+      - name: build demo
+        run: |
+          qmake
+          cmake
+        env:
+          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+
+  build-on-ubuntu-22:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: install boost
+        id: install-boost
+        uses: MarkusJx/install-boost@v2.4.1
+        with:
+          boost_version: '1.80.0'
+          platform_version: 22.04
+          toolset: 'gcc'
+
+      - name: install qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5'
+          target: 'desktop'
+      - name: build demo
+        run: |
+          qmake
+          cmake
+        env:
+          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+  build_on_macos:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+        qt_ver: [5.9.8,6.5]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: install boost
+        id: install-boost
+        uses: MarkusJx/install-boost@v2.4.1
+        with:
+          boost_version: 1.80.0
+          platform_version: 10.15
+          toolset: 'clang'
+
+      - name: install qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5'
+          target: 'desktop'
+      - name: build demo
+        run: |
+          qmake
+          cmake
+        env:
+          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
