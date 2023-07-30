@@ -37,7 +37,7 @@ jobs:
       - name: build demo
         run: |
           qmake
-          cmake
+          make
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       # tag 打包
@@ -86,7 +86,7 @@ jobs:
       - name: build demo
         run: |
           qmake
-          cmake
+          make
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
   build_on_macos:
@@ -116,6 +116,6 @@ jobs:
       - name: build demo
         run: |
           qmake
-          cmake
+          make
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
