@@ -37,7 +37,7 @@ jobs:
       - name: build demo
         run: |
           qmake
-          qmake --build . --config Release
+          qmake -makefile
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       
