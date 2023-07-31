@@ -39,6 +39,19 @@ jobs:
           qmake.exe class-manager.pro
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+      - name: Get Release Version
+        shell: pwsh
+        run: .\build\getReleaseVersion.ps1
+      - name: Create GitHub release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ env.ReleaseVersion }}
+          title: ${{ env.ReleaseVersion }}
+          prerelease: false
+          files: |
+            artifacts/packages/*
+
       
 
   build-on-ubuntu-22:
