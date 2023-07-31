@@ -40,11 +40,7 @@ jobs:
           qmake -makefile
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-      - name: push
-        uses: actions/upload-artifact@v3
-        with:
-            name: my-artifact ${{ matrix.node-version }}
-            path: ${{ github.workspace }}
+      
 
   build-on-ubuntu-22:
     runs-on: ubuntu-22.04
