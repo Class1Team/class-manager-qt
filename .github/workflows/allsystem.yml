@@ -36,8 +36,7 @@ jobs:
           arch: 'win64_msvc2019_64'
       - name: build demo
         run: |
-          qmake
-          qmake -makefile
+          qmake.exe class-manager.pro
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       
