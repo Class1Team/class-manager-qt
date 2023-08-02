@@ -13,6 +13,7 @@ class setupwindow : public QMainWindow
 public:
     setupwindow(QWidget *parent = nullptr);
     ~setupwindow();
+
 private:
     /* 声明一个 QPushButton 对象 pushButton1 */
     QPushButton *nextButton;

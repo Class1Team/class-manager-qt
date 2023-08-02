@@ -12,6 +12,8 @@ on:
     paths-ignore:
       - 'README.md'
       - 'LICENSE'
+  schedule:
+    - cron: '0 21 * * *'
 jobs:
   build-on-window-22:
     runs-on: windows-2022
