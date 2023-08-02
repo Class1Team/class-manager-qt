@@ -41,6 +41,16 @@ jobs:
           qmake.exe class-manager.pro
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+      # 根据查询到的版本号创建 release\n      
+      - name: Create Release    
+        id: create_release     
+        uses: actions/create-release@v1    
+        env:        
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
+        with:     
+          tag_name: '${{ steps.get_version.outputs.VERSION }}'
+          release_name: 'app ${{ steps.get_version.outputs.VERSION }}'
+
       
 
   build-on-ubuntu-22:
