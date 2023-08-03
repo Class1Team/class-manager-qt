@@ -13,6 +13,8 @@ namespace allvalue {
 	struct langs {
 		vector<QString>cancel;
 		vector<QString>next;
+		vector<QString>back;
+		vector<QString>SetLanguage;
 	};
 	langs Lang;
 }
