@@ -15,6 +15,9 @@ namespace allvalue {
 		vector<QString>next;
 		vector<QString>back;
 		vector<QString>SetLanguage;
+		vector<QString>ok;
+		vector<QString>warn;
+		vector<QString>askexit;
 	};
 	langs Lang;
 }

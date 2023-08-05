@@ -1,5 +1,5 @@
 #include "setupwindow.h"
-#include"value.h"
+#include<value.h>
 using namespace allvalue;
 setupwindow::setupwindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,8 +12,24 @@ setupwindow::setupwindow(QWidget *parent)
     Lang.back.push_back("back");
     Lang.SetLanguage.push_back("设置语言");
     Lang.SetLanguage.push_back("language settings");
+    Lang.ok.push_back("确认");
+    Lang.ok.push_back("Yes");
+    Lang.warn.push_back("警告");
+    Lang.warn.push_back("warning");
+    Lang.askexit.push_back("你确定退出吗?");
+    Lang.askexit.push_back("Do you want to exit?");
 
     this->setGeometry(0, 0, 800, 480);
+
+    listwidget = new QListWidget();
+    listwidget->insertItem(0, "language");
+
+    exitbox.setWindowTitle(Lang.warn[lang]);
+    exitbox.setText(Lang.askexit[lang]);
+    exitbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    exitbox.setButtonText(QMessageBox::Ok, Lang.ok[lang]);
+    exitbox.setButtonText(QMessageBox::Cancel, Lang.cancel[lang]);
+
     nextButton = new QPushButton(Lang.next[lang], this);
     cancelButton = new QPushButton(Lang.cancel[lang], this);
     backButton3 = new QPushButton(Lang.back[lang], this);
@@ -52,6 +68,14 @@ void setupwindow::onChanged(int index)       //槽函数实现
         nextButton->setText(Lang.next[lang]);
         backButton3->setText(Lang.back[lang]);
         label1->setText(Lang.SetLanguage[lang]);
+
+        exitbox.setWindowTitle(Lang.warn[lang]);
+        exitbox.setText(Lang.askexit[lang]);
+        exitbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        exitbox.setButtonText(QMessageBox::Ok, Lang.ok[lang]);
+        exitbox.setButtonText(QMessageBox::Cancel, Lang.cancel[lang]);
+        exitbox.repaint();
+
     }
     else if (comBox->itemText(index) == "English") {
         lang = en;
@@ -61,6 +85,15 @@ void setupwindow::onChanged(int index)       //槽函数实现
         nextButton->setText(Lang.next[lang]);
         backButton3->setText(Lang.back[lang]);
         label1->setText(Lang.SetLanguage[lang]);
+
+        exitbox.setWindowTitle(Lang.warn[lang]);
+        exitbox.setText(Lang.askexit[lang]);
+        exitbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        exitbox.setButtonText(QMessageBox::Ok, Lang.ok[lang]);
+        exitbox.setButtonText(QMessageBox::Cancel, Lang.cancel[lang]);
+        exitbox.repaint();
+
+        
     }
 }
 void setupwindow::cancelButtonon() {

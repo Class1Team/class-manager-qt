@@ -8,7 +8,8 @@
 #include<qfont.h>
 #include <QCloseEvent>
 #include<qmessagebox.h>
-
+#include<qstackedwidget.h>
+#include <QListWidget>
 class setupwindow : public QMainWindow
 {
     Q_OBJECT
@@ -17,9 +18,6 @@ public:
     setupwindow(QWidget* parent = nullptr);
     ~setupwindow();
     void closeEvent(QCloseEvent *Event) {
-        exitbox.setWindowTitle("warning");
-        exitbox.setText("你确定退出吗?");
-        exitbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         if (exitbox.exec()== QMessageBox::Ok) {
             Event->accept();
         }
@@ -37,6 +35,8 @@ private:
     QLabel *label1;
     QFont fonts;
     QMessageBox exitbox;
+    QStackedWidget* stackwidget;
+    QListWidget* listwidget;
 
 public slots :
     void onChanged(int index);   //定义槽函数
