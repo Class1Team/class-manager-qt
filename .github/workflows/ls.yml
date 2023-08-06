@@ -39,8 +39,10 @@ jobs:
           qmake.exe class-manager.pro
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-      - name: ls
+      - name: mkdirs
         run: |
           mkdir exe
-          cp ./debug/class-manager.exe ./exe
-          windeployqt ./exe/class-manager.exe
+      - name: cp
+        run: cp ./release/class-manager.exe ./exe
+      - name: pack
+        run: windeployqt ./exe/class-manager.exe
