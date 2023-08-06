@@ -42,6 +42,10 @@ jobs:
       - name: mkdirs
         run: |
           mkdir exe
+      - name: cd
+        run: |
+          cd ./debug
+          ls
       - name: cp
         run: cp ./release/class-manager.exe ./exe
       - name: pack
