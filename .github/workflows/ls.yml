@@ -1,0 +1,45 @@
+name: ls
+on: 
+  # push代码时触发workflow
+  push:
+    # 忽略README.md
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+  # pull_request时触发workflow
+  pull_request:
+    # 忽略README.md
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+  schedule:
+    - cron: '0 21 * * *'
+jobs:
+  build-on-window-22:
+    runs-on: windows-2022
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: install boost
+        id: install-boost
+        uses: MarkusJx/install-boost@v2.4.1
+        with:
+          boost_version: '1.80.0'
+          platform_version: 2022
+          toolset: 'msvc'
+      - name: install qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.1'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2019_64'
+      - name: build demo
+        run: |
+          qmake.exe class-manager.pro
+        env:
+          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+      - name: ls
+        run: tree
