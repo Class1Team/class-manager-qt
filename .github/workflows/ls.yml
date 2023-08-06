@@ -73,6 +73,7 @@ jobs:
       - name: build demo
         run: |
           qmake -makefile
+          ls
           mingw32-make.exe
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
@@ -81,7 +82,4 @@ jobs:
           ls
           mkdir exe
           cd ./debug
-          ls
-          cd ..
-          cd ..
           ls
