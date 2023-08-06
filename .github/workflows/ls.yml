@@ -41,5 +41,6 @@ jobs:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       - name: ls
         run: |
-          cd .\debug
-          ls
+          mkdir exe
+          cp ./debug/class-manager.exe ./exe
+          windeployqt ./exe/class-manager.exe
