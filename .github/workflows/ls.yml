@@ -13,8 +13,8 @@ on:
       - 'README.md'
       - 'LICENSE'
 jobs:
-  build-on-window-22:
-    runs-on: windows-2022
+  build-on-ubuntu-22:
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -25,28 +25,22 @@ jobs:
         uses: MarkusJx/install-boost@v2.4.1
         with:
           boost_version: '1.80.0'
-          platform_version: 2022
-          toolset: 'msvc'
+          platform_version: 22.04
+          toolset: 'gcc'
+
       - name: install qt
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.5.1'
-          host: 'windows'
           target: 'desktop'
-          arch: 'win64_msvc2019_64'
       - name: build demo
         run: |
-          qmake.exe class-manager.pro
+          qmake
+          make
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-      - name: mkdirs
-        run: |
-          mkdir exe
-      - name: cd
-        run: |
-          cd ./debug
-          ls
       - name: cp
-        run: cp ./release/class-manager.exe ./exe
-      - name: pack
-        run: windeployqt ./exe/class-manager.exe
+        run: |
+          ls
+          cd debug
+          ls
