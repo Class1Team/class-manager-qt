@@ -77,6 +77,10 @@ jobs:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       - name: cp
         run: |
+          ls
           mkdir exe
+          cd debug
+          ls
+          cd ..
           cd ..
           ls
