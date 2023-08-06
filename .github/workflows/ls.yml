@@ -42,5 +42,5 @@ jobs:
       - name: cp
         run: |
           ls
-          cd debug
+          cd ..
           ls
