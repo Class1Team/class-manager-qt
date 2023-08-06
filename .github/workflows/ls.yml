@@ -72,7 +72,7 @@ jobs:
           arch: 'win64_msvc2019_64'
       - name: build demo
         run: |
-          qmake -Makefile
+          qmake -makefile
           mingw32-make.exe
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
