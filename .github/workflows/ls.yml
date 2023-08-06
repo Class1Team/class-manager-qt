@@ -48,6 +48,7 @@ jobs:
           cp class-manager app
           cd app
           ls
+          
   build-on-window-22:
     runs-on: windows-2022
     steps:
