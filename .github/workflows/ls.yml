@@ -42,5 +42,10 @@ jobs:
       - name: cp
         run: |
           ls
-          cd ..
+      - name: pack
+        run: |
+          mkdir app
+          cp class-manager app
+          cd app
+          linuxdeployqt class-manager
           ls
