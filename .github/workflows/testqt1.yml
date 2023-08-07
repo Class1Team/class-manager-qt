@@ -55,7 +55,7 @@ jobs:
           # Architecture for Windows/Android
           arch: ${{ matrix.qt_arch }}
       # 拉取代码
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 1
       # 编译msvc
