@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Install Qt windows 
       if: matrix.os == 'windows-latest'
-      uses: jurplel/install-qt-action@v2
+      uses: jurplel/install-qt-action@v3
       with:
         arch: 'win32_mingw81'
     - name: Install Qt linux 
@@ -41,5 +41,9 @@ jobs:
           platform: x64
     - name: compile qmake
       run:  qmake
-    - name: compile make
-      run:  nmake
+    - name: compile make linux/mac
+      if: matrix.os == 'macOS-latest' | 'ubuntu-latest'
+      run:  make
+    - name: compile make win
+      if: matrix.os == 'windows-latest'
+      run: mingw32-make.exe
