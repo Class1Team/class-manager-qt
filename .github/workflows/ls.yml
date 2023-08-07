@@ -41,8 +41,11 @@ jobs:
           platform: x64
     - name: compile qmake
       run:  qmake
-    - name: compile make linux/mac
-      if: matrix.os == 'macOS-latest' | 'ubuntu-latest'
+    - name: compile make mac
+      if: matrix.os == 'macOS-latest'
+      run:  make
+    - name: compile make linux
+      if: matrix.os == 'ubuntu-latest'
       run:  make
     - name: compile make win
       if: matrix.os == 'windows-latest'
