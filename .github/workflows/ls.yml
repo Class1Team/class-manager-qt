@@ -27,13 +27,21 @@ jobs:
       if: matrix.os == 'windows-latest'
       uses: jurplel/install-qt-action@v3
       with:
+        version: '6.2.*'
+        target: 'desktop'
         arch: 'win32_mingw81'
     - name: Install Qt linux 
       if: matrix.os == 'ubuntu-latest'
       uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.2.*'
+        target: 'desktop'
     - name: Install Qt mac
       if: matrix.os == 'macOS-latest'
       uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.2.*'
+        target: 'desktop'
     - name: Set up MinGW
       if: matrix.os == 'windows-latest'
       uses: egor-tensin/setup-mingw@v2
