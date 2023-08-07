@@ -13,71 +13,33 @@ on:
       - 'README.md'
       - 'LICENSE'
 jobs:
-  build-on-ubuntu-22:
-    runs-on: ubuntu-22.04
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+      fail-fast: false
+    name: ${{ matrix.os }}
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-      - name: install boost
-        id: install-boost
-        uses: MarkusJx/install-boost@v2.4.1
-        with:
-          boost_version: '1.80.0'
-          platform_version: 22.04
-          toolset: 'gcc'
-
-      - name: install qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          version: '6.2.*'
-          target: 'desktop'
-      - name: build demo
-        run: |
-          qmake
-          make
-        env:
-          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-      - name: cp
-        run: |
-          ls
-      - name: pack
-        run: |
-          mkdir app
-          cp class-manager app
-          cd app
-          ls
-          
-  build-on-window-22:
-    runs-on: windows-2022
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-      - name: install boost
-        id: install-boost
-        uses: MarkusJx/install-boost@v2.4.1
-        with:
-          boost_version: '1.80.0'
-          platform_version: 2022
-          toolset: 'msvc'
-      - name: install qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          version: '6.2.*'
-          host: 'windows'
-          target: 'desktop'
-          arch: 'win64_msvc2019_64'
-      - name: build demo
-        run: |
-          qmake -makefile
-          ls
-          mingw32-make.exe
-      - name: cp
-        run: |
-          ls
-          mkdir exe
-          cd ./debug
-          ls
+    - name: Git checkout
+      uses: actions/checkout@v3
+    - name: Install Qt windows 
+      if: matrix.os == 'windows-latest'
+      uses: jurplel/install-qt-action@v2
+      with:
+        arch: 'win32_mingw81'
+    - name: Install Qt linux 
+      if: matrix.os == 'ubuntu-latest'
+      uses: jurplel/install-qt-action@v3
+    - name: Install Qt mac
+      if: matrix.os == 'macOS-latest'
+      uses: jurplel/install-qt-action@v3
+    - name: Set up MinGW
+      if: matrix.os == 'windows-latest'
+      uses: egor-tensin/setup-mingw@v2
+      with:
+          platform: x64
+    - name: compile qmake
+      run:  qmake
+    - name: compile make
+      run:  nmake
