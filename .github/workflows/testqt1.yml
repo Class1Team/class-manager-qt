@@ -43,6 +43,11 @@ jobs:
             msvc_arch: x86
     # 步骤
     steps:
+      # 拉取代码
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
       # 安装Qt
       - name: Install Qt
         # 使用外部action。这个action专门用来安装Qt
@@ -54,10 +59,7 @@ jobs:
           target: ${{ matrix.qt_target }}
           # Architecture for Windows/Android
           arch: ${{ matrix.qt_arch }}
-      # 拉取代码
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
+      
       # 编译msvc
       - name: build-msvc
         shell: cmd
