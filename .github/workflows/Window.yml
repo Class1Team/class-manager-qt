@@ -1,4 +1,4 @@
-name: Windows MinGW
+name: Window
 on: 
   push:
     paths:
