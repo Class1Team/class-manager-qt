@@ -31,6 +31,8 @@ jobs:
         target: 'desktop'
         arch: 'win64_msvc2019_64'
         archives: 'qtbase qtsvg'
+        tools: 'tools_ifw tools_qtcreator qt.tools.qtcreator'
+        source: true
     - name: Install Qt linux 
       if: matrix.os == 'ubuntu-latest'
       uses: jurplel/install-qt-action@v3
