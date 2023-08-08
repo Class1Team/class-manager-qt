@@ -32,7 +32,6 @@ jobs:
         arch: 'win64_msvc2019_64'
         archives: 'qtbase qtsvg'
         tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
-        source: 'true'
         setup-python: 'false'
     - name: Install Qt linux 
       if: matrix.os == 'ubuntu-latest'
