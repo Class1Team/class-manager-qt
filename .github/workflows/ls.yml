@@ -60,4 +60,5 @@ jobs:
       run:  make
     - name: compile make win
       if: matrix.os == 'windows-latest'
+      shell: cmd
       run: mingw32-make.exe
