@@ -30,6 +30,7 @@ jobs:
         version: '6.2.*'
         target: 'desktop'
         arch: 'win64_msvc2019_64'
+        archives: 'qtbase qtsvg'
     - name: Install Qt linux 
       if: matrix.os == 'ubuntu-latest'
       uses: jurplel/install-qt-action@v3
