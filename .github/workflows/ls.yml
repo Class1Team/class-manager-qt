@@ -59,3 +59,11 @@ jobs:
       shell: cmd
       run: |
         mingw32-make
+    - name: pack win exe
+      run: |
+        mkdir app
+        cp release/class-manager.exe app
+        cd app
+        windeployqt class-manager.exe
+        dir
+        
