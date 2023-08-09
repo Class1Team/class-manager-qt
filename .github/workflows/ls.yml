@@ -80,6 +80,6 @@ jobs:
       uses: montudor/action-zip@v1
     - name: zip app
       run: |
-        zip -qq -r app.zip zpp
+        zip -qq -r app.zip app
         ls
         
