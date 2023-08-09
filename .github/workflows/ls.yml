@@ -76,10 +76,7 @@ jobs:
       run: |
         mkdir app
         cp class-manager app
-    - name: Install zip
-      uses: montudor/action-zip@v1
-    - name: zip app
+    - name: gzip
       run: |
-        zip -qq -r app.zip app
-        ls
+        tar -czvf app.tar.gz app
         
