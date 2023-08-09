@@ -76,7 +76,7 @@ jobs:
       run: |
         ls
         mkdir app
-        cp class-manager app
+        cp class-manager.app app
     - name: gzip
       run: |
         tar -czvf app.tar.gz app
