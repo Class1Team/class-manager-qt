@@ -75,6 +75,7 @@ jobs:
       if: matrix.os == 'macOS-latest'
       run: |
         mkdir app
+        alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
         tree
     - name: gzip
       run: |
