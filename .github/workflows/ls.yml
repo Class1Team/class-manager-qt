@@ -79,10 +79,10 @@ jobs:
         cp class-manager.app/Contents/MacOS/class-manager app
     - name: gzip
       run: |
-        tar -czvf app.tar.gz app
+        tar -czvf app-${{ matrix.os }}.tar.gz app
     - name: Upload app
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: app/app.*
+        path: app/app-${{ matrix.os }}.*
         
