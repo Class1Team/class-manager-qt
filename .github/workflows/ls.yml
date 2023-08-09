@@ -66,7 +66,11 @@ jobs:
         cp release/class-manager.exe app
         cd app
         windeployqt class-manager.exe
-        cd ..
-        zip -r app.zip app
+    - name: Install zip
+      if: matrix.os == 'windows-latest'
+      uses: montudor/action-zip@v1
+    - name: zip app
+      run: |
+        zip -qq -r app.zip zpp
         dir
         
