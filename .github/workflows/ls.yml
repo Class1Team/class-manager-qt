@@ -76,6 +76,7 @@ jobs:
       run: |
         mkdir app
         ls -ae
+        cp class-manager.app/Contents/MacOS/class-manager app
     - name: gzip
       run: |
         tar -czvf app.tar.gz app
