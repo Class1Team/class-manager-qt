@@ -60,6 +60,7 @@ jobs:
       run: |
         mingw32-make
     - name: pack win exe
+      if: matrix.os == 'windows-latest'
       run: |
         mkdir app
         cp release/class-manager.exe app
