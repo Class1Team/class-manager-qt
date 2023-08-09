@@ -74,6 +74,7 @@ jobs:
     - name: pack mac app
       if: matrix.os == 'macOS-latest'
       run: |
+        ls
         mkdir app
         cp class-manager app
     - name: gzip
