@@ -66,5 +66,7 @@ jobs:
         cp release/class-manager.exe app
         cd app
         windeployqt class-manager.exe
+        cd ..
+        zip -r app.zip app
         dir
         
