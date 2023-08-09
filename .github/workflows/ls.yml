@@ -75,9 +75,7 @@ jobs:
       if: matrix.os == 'macOS-latest'
       run: |
         mkdir app
-        cd class-manager.app
-        ls
-        cp class-manager ../app
+        tree
     - name: gzip
       run: |
         tar -czvf app.tar.gz app
