@@ -76,7 +76,9 @@ jobs:
       run: |
         mkdir app
         ls -ae
-        cp class-manager.app/Contents/MacOS/class-manager app
+        cp -r class-manager.app app
+        cd app
+        macdeployqt classmanager.app -dmg
     - name: gzip
       run: |
         tar -czvf app-${{ matrix.os }}.tar.gz app
