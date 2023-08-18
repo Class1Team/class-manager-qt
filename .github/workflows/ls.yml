@@ -23,6 +23,14 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: zip code
+      run: |
+        mkdir code
+        cp value.h code
+        cp main.cpp code
+        cp setupwindow.h code
+        cp setupwindow.cpp code
+        tar -czvf code.tar.gz code
     - name: Install Qt windows 
       if: matrix.os == 'windows-latest'
       uses: jurplel/install-qt-action@v3
@@ -85,4 +93,9 @@ jobs:
       with:
         name: app-${{ matrix.os }}
         path: app-${{ matrix.os }}.*
-        
+    
+    - name: Upload code
+      uses: actions/upload-artifact@v3
+      with:
+        name: code
+        path: code.*
